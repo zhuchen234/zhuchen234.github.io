@@ -11,10 +11,10 @@
     button,input,select,textarea{font:inherit}
     .top{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 22px;background:rgba(245,247,244,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
     .brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,.25),transparent 35%),repeating-linear-gradient(0deg,#b87939 0 8px,#d19a58 8px 14px,#9e672e 14px 18px);box-shadow:inset 0 0 0 2px rgba(94,57,24,.22)}
-    h1,h2,p{margin:0}h1{font-size:clamp(20px,3vw,30px)}.brand p,.hint,.summary,.meta,.status{color:var(--muted)}
+    h1,h2,p{margin:0}h1{font-size:clamp(20px,3vw,30px)}.brand p,.hint,.summary,.meta,.status,.factory-contact{color:var(--muted)}
     .wrap{display:grid;grid-template-columns:minmax(280px,370px) minmax(380px,1fr) minmax(280px,340px);gap:18px;width:min(1500px,100%);margin:0 auto;padding:18px}
     .panel,.stage{background:var(--card);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);min-width:0}.panel{padding:18px}.stage{display:flex;flex-direction:column;min-height:650px;overflow:hidden}
-    .factory{padding:18px 12px 12px;text-align:center;font-size:clamp(24px,4vw,42px);font-weight:800}
+    .factory{padding:18px 12px 4px;text-align:center;font-size:clamp(24px,4vw,42px);font-weight:800}.factory-contact{text-align:center;font-size:15px;padding-bottom:12px}
     .canvasBox{position:relative;display:grid;place-items:center;flex:1;min-height:430px;padding:18px;background:radial-gradient(circle at 50% 34%,#fffaf0,rgba(255,255,255,.42) 42%,rgba(222,230,222,.66) 82%),repeating-linear-gradient(90deg,rgba(45,107,87,.06) 0 1px,transparent 1px 32px),repeating-linear-gradient(0deg,rgba(45,107,87,.06) 0 1px,transparent 1px 32px)}
     canvas{display:block;width:min(100%,760px);height:min(58vh,500px);min-height:320px;border-radius:8px;cursor:grab}canvas:active{cursor:grabbing}
     .controls{position:absolute;right:16px;bottom:16px;display:flex;gap:8px;padding:8px;border:1px solid rgba(215,222,216,.9);border-radius:8px;background:rgba(255,255,255,.84);backdrop-filter:blur(8px)}
@@ -34,7 +34,7 @@
   </style>
 </head>
 <body>
-  <header class="top"><div class="brand"><span class="logo"></span><div><h1>紫云英木盒包装厂</h1><p>无盖木盒下单配置</p></div></div><button class="ghost" id="reset" type="button">重置</button></header>
+  <header class="top"><div class="brand"><span class="logo"></span><div><h1>紫云英木盒包装厂</h1><p>联系电话 15825789036　朱先生</p></div></div><button class="ghost" id="reset" type="button">重置</button></header>
   <main class="wrap">
     <section class="panel"><div class="head"><h2>基础信息</h2><span class="hint">单位：mm</span></div>
       <label class="field"><span>木板选材</span><div class="inline"><input id="material" placeholder="例如：松木、桐木、榉木、樟子松"><button id="saveMaterial" type="button">保存</button></div></label>
@@ -44,7 +44,7 @@
       <div class="head" style="margin-top:22px"><h2>五块木板</h2><span class="hint">尺寸会同步到对应木板</span></div>
       <div class="boards"><article class="board"><strong>底板</strong><label>长<input data-board="bottom" data-key="length" inputmode="decimal"></label><label>宽<input data-board="bottom" data-key="width" inputmode="decimal"></label></article><article class="board"><strong>左侧板</strong><label>长<input data-board="left" data-key="length" inputmode="decimal"></label><label>高<input data-board="left" data-key="height" inputmode="decimal"></label></article><article class="board"><strong>右侧板</strong><label>长<input data-board="right" data-key="length" inputmode="decimal"></label><label>高<input data-board="right" data-key="height" inputmode="decimal"></label></article><article class="board"><strong>前板</strong><label>长<input data-board="front" data-key="length" inputmode="decimal"></label><label>高<input data-board="front" data-key="height" inputmode="decimal"></label></article><article class="board"><strong>后板</strong><label>长<input data-board="back" data-key="length" inputmode="decimal"></label><label>高<input data-board="back" data-key="height" inputmode="decimal"></label></article></div>
     </section>
-    <section class="stage"><div class="factory">紫云英木盒包装厂</div><div class="canvasBox"><canvas id="box"></canvas><div class="controls"><button class="ghost" id="left" type="button">左转</button><button class="ghost" id="right" type="button">右转</button><button class="ghost" id="home" type="button">复位</button></div></div><div class="meta" id="meta"></div></section>
+    <section class="stage"><div class="factory">紫云英木盒包装厂</div><p class="factory-contact">联系电话 15825789036　朱先生</p><div class="canvasBox"><canvas id="box"></canvas><div class="controls"><button class="ghost" id="left" type="button">左转</button><button class="ghost" id="right" type="button">右转</button><button class="ghost" id="home" type="button">复位</button></div></div><div class="meta" id="meta"></div></section>
     <section class="panel order"><div class="head"><h2>订单草稿</h2><span id="status">未保存</span></div><label class="field"><span>客户姓名</span><input id="name" placeholder="请输入姓名"></label><label class="field"><span>联系电话</span><input id="phone" type="tel" placeholder="请输入电话"></label><label class="field"><span>数量</span><input id="qty" inputmode="numeric" value="100"></label><label class="field"><span>备注</span><textarea id="note" rows="4" placeholder="例如：倒角、打磨、logo、交期要求"></textarea></label><div class="summary" id="summary"></div><div class="actions"><button id="saveDraft" type="button">保存订单草稿</button><button class="ghost" id="printBtn" type="button">打印</button></div></section>
   </main>
   <script>
@@ -63,7 +63,7 @@
     function renderSummary(){el.sum.innerHTML=`<strong>当前订单摘要</strong><br>木板选材：${model.material||draft.material||"未选择"}<br>底板：${model.width} × ${model.length} mm，左右侧板：${model.length} × ${model.height} mm，前后板：${model.width} × ${model.height} mm<br>木板厚度：${model.thickness} mm，数量：${valid(el.qty.value)||1} 个`}
     function renderMeta(){el.meta.innerHTML=[`底板：${model.width} × ${model.length} mm`,`左右侧板：${model.length} × ${model.height} mm`,`前后板：${model.width} × ${model.height} mm`,`厚度：${model.thickness} mm`].join("　")}
     function draw(){const c=el.box,r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);c.width=Math.max(320,r.width)*d;c.height=Math.max(300,r.height)*d;const x=c.getContext("2d"),w=c.width/d,h=c.height/d;x.scale(d,d);x.clearRect(0,0,w,h);let bg=x.createRadialGradient(w*.5,h*.42,20,w*.5,h*.5,Math.max(w,h)*.72);bg.addColorStop(0,"#fffaf0");bg.addColorStop(.52,"#f3eadc");bg.addColorStop(1,"#e9efe9");x.fillStyle=bg;x.fillRect(0,0,w,h);
-      const sc=Math.min(w*.62/model.length,h*.54/(model.width+model.height),5.4),L=model.length*sc,D=model.width*sc,H=Math.max(70,model.height*sc),T=Math.max(10,Math.min(26,model.thickness*sc)),co=Math.cos(rot),si=Math.sin(rot),ox=w/2,oy=h*.63+H*.12;
+      const sc=Math.min(w*.62/model.length,h*.48/(model.width+model.height*.72),5.4),L=model.length*sc,D=model.width*sc,H=Math.max(26,model.height*sc*.82),T=Math.max(10,Math.min(26,model.thickness*sc)),co=Math.cos(rot),si=Math.sin(rot),ox=w/2,oy=h*.62+H*.1;
       const rp=(a,b)=>({x:a*co-b*si,z:a*si+b*co}),pr=p=>{const z=rp(p.x,p.z);return{x:ox+z.x,y:oy+z.z*.48-p.y,depth:z.z+p.y*.08}};
       const hl=L/2,hd=D/2,ix=Math.max(hl-T,hl*.72),iz=Math.max(hd-T,hd*.72),floorY=Math.max(T*.9,10);
       function poly(points,col,alpha=1){const pts=points.map(pr);return{pts,col,alpha,depth:pts.reduce((s,p)=>s+p.depth,0)/pts.length}}
